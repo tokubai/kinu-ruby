@@ -21,7 +21,7 @@ module Kinu
     end
 
     def scheme
-      if Kinu.config.ssl?
+      if ssl?
         :https
       else
         :http
