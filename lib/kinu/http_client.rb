@@ -19,7 +19,7 @@ module Kinu
     end
 
     def run
-      response = connection.send(@method, @path, @params)
+      response = connection.send(@method, @path, @params, "User-Agent" => Kinu::USER_AGENT)
       case response.status
       when 400
         raise BadRequestError.new(response)
