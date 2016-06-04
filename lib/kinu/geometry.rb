@@ -32,9 +32,8 @@ module Kinu
     end
 
     def valid?
-      if @options[:width].nil? && @options[:height].nil?
-        return false
-      end
+      return false if @options.empty?
+      return false if @options[:width].nil? && @options[:height].nil?
       true
     end
 
