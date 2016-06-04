@@ -13,10 +13,12 @@ module Kinu
       @options = options
     end
 
+    def empty?
+      @options.empty?
+    end
+
     def valid?
-      return false if @options.empty?
-      return false if @options[:width].nil? && @options[:height].nil?
-      true
+      !(@options[:width].nil? && @options[:height].nil?)
     end
 
     def to_s
