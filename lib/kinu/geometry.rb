@@ -39,8 +39,9 @@ module Kinu
 
     def to_s
       geo = []
-      @options.each do |key, value|
-        geo << "#{AVAILABLE_TYPES[key][:signature]}=#{value}" if AVAILABLE_TYPES[key]
+      AVAILABLE_TYPES.each do |key, metadata|
+        next if @options[key].nil?
+        geo << "#{metadata[:signature]}=#{@options[key]}"
       end
       geo.join(',')
     end
