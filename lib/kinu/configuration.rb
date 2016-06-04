@@ -3,7 +3,7 @@ module Kinu
     attr_writer :host, :port, :ssl
 
     def host
-      @host
+      @host || ""
     end
 
     def port

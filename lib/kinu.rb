@@ -7,6 +7,7 @@ module Kinu
   USER_AGENT = "KinuRubyClient/#{Kinu::VERSION}"
 
   def self.base_uri
+    raise "Kinu.config.host is not set." if config.host.empty?
     URI::HTTP.build(scheme: config.scheme, host: config.host, port: config.port)
   end
 
