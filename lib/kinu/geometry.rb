@@ -1,30 +1,12 @@
 module Kinu
   class Geometry
     AVAILABLE_TYPES = {
-      width: {
-        signature: :w,
-        type:      :integer
-      },
-      height: {
-        signature: :h,
-        type:      :integer
-      },
-      quality: {
-        signature: :q,
-        type:      :quality,
-      },
-      crop: {
-        signature: :c,
-        type:      :bool,
-      },
-      original: {
-        signature: :o,
-        type:      :bool,
-      },
-      middle: {
-        signature: :m,
-        type:      :integer,
-      }
+      width:    :w,
+      height:   :h,
+      quality:  :q,
+      crop:     :c,
+      original: :o,
+      middle:   :m,
     }.freeze
 
     def initialize(options)
@@ -39,9 +21,9 @@ module Kinu
 
     def to_s
       geo = []
-      AVAILABLE_TYPES.each do |key, metadata|
-        next if @options[key].nil?
-        geo << "#{metadata[:signature]}=#{@options[key]}"
+      AVAILABLE_TYPES.each do |full_name, short_name|
+        next if @options[full_name].nil?
+        geo << "#{short_name}=#{@options[full_name]}"
       end
       geo.join(',')
     end
