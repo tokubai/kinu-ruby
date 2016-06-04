@@ -1,6 +1,6 @@
-# kinu
+# Kinu ruby client
 
-kinu ruby client
+[Kinu](https://github.com/TakatoshiMaeda/kinu) ruby client
 
 ## Installation
 
