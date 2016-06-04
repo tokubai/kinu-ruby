@@ -21,6 +21,10 @@ module Kinu
         signature: :o,
         type:      :bool,
       },
+      middle: {
+        signature: :m,
+        type:      :integer,
+      }
     }.freeze
 
     def initialize(options)
