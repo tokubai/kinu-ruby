@@ -1,4 +1,4 @@
-# kinu-ruby
+# kinu
 
 kinu ruby client
 
@@ -7,7 +7,7 @@ kinu ruby client
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'kinu-ruby'
+gem 'kinu'
 ```
 
 And then execute:
@@ -16,11 +16,27 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install kinu-ruby
+    $ gem install kinu
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'kinu'
+
+Kinu.configure do |c|
+  c.host = '127.0.0.1'
+  c.port = 80
+  c.ssl  = true
+end
+
+resource = Kinu::Resource.new(:foods, 1)
+resource.upload(open('/path/to/image.jpg'))
+resource.uri(width: 280, height: 300) # => #<URI::HTTP http://127.0.0.1/images/foods/w=280,h=300/1.jpg>
+
+sandbox = Kinu::Sandbox.upload(open('/path/to/image.jpg'))
+sandbox.uri(width: 280, height: 300) # => #<URI::HTTP http://192.168.99.100:5001/images/__sandbox__/w=280,h=300/1abd5e51-2ba4-43e5-a355-c2abee318d3f.jpg>
+sandbox.attach_to(:foods, 1) # => #<Kinu::Resource:0x007fa4538098b0 @id="1", @name="foods">
+```
 
 ## Development
 
@@ -30,5 +46,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kinu-ruby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/TakatoshiMaeda/kinu-ruby.
 
