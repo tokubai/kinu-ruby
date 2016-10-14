@@ -1,3 +1,4 @@
+require 'uri'
 require 'kinu/configuration'
 require 'kinu/version'
 require 'kinu/resource'
