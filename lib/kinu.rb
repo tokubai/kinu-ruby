@@ -9,7 +9,7 @@ module Kinu
 
   def self.base_uri
     raise "Kinu.config.host is not set." if config.host.empty?
-    URI::HTTP.build(scheme: config.scheme, host: config.host, port: config.port)
+    URI::Generic.build(scheme: config.scheme.to_s, host: config.host, port: config.port)
   end
 
   def self.configure
