@@ -13,7 +13,7 @@ module Kinu
       end
     end
 
-    describe '.uri' do
+    describe '#uri' do
       let(:name) { 'user' }
       let(:id) { 1 }
 
