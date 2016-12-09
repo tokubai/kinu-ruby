@@ -11,14 +11,26 @@ module Kinu
 
     def initialize(options)
       @options = options
+      validate
+    end
+
+    def validate
+      raise ArgumentError, "required geometry hash." if empty?
+
+      return if !(@options[:width].nil? && @options[:height].nil?)
+      return if @options[:middle] == true
+      return if @options[:original] == true
+
+      raise ArgumentError, <<~EOS
+      invalid geometry, geometry must be met least one condition.
+      - set width or height any numeric.
+      - set middle true.
+      - set original true.
+      EOS
     end
 
     def empty?
       @options.empty?
-    end
-
-    def valid?
-      !(@options[:width].nil? && @options[:height].nil?)
     end
 
     def to_s

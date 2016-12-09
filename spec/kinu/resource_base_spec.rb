@@ -27,7 +27,7 @@ module Kinu
         end
       end
 
-      context 'without width and height' do
+      context 'with crop option' do
         let(:geometry) { { crop: true } }
 
         it 'raises ArgumentError' do
@@ -49,6 +49,24 @@ module Kinu
         let(:height) { 100 }
         let(:geometry) { { height: height } }
         let(:uri) { URI::HTTP.build(host: host, path: "/images/#{name}/h=#{height}/#{id}.jpg") }
+
+        it 'returns uri' do
+          is_expected.to eq(uri)
+        end
+      end
+
+      context 'with middle' do
+        let(:geometry) { { middle: true } }
+        let(:uri) { URI::HTTP.build(host: host, path: "/images/#{name}/m=true/#{id}.jpg") }
+
+        it 'returns uri' do
+          is_expected.to eq(uri)
+        end
+      end
+
+      context 'with original' do
+        let(:geometry) { { original: true } }
+        let(:uri) { URI::HTTP.build(host: host, path: "/images/#{name}/o=true/#{id}.jpg") }
 
         it 'returns uri' do
           is_expected.to eq(uri)
