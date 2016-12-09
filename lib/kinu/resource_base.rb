@@ -25,8 +25,6 @@ module Kinu
     private
 
     def build_path(geometry, format)
-      raise ArgumentError, "required geometry hash." if geometry.empty?
-      raise ArgumentError, "invalid geometry, height or width is required." unless geometry.valid?
       "/images/#{@name}/#{geometry}/#{@id}.#{format}"
     end
 
