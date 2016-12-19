@@ -1,9 +1,13 @@
 module Kinu
   class Configuration
-    attr_writer :host, :port, :ssl
+    attr_writer :host, :upload_host, :port, :ssl
 
     def host
       @host || ""
+    end
+
+    def upload_host
+      @upload_host || host || ""
     end
 
     def port

@@ -3,15 +3,16 @@ require 'kinu/errors'
 
 module Kinu
   class HttpClient
-    def self.post(path, params)
-      new(:post, path, params).run
+    def self.post(base_uri, path, params)
+      new(base_uri, :post, path, params).run
     end
 
-    def self.multipart_post(path, params)
-      new(:post, path, params, multipart: true).run
+    def self.multipart_post(base_uri, path, params)
+      new(base_uri, :post, path, params, multipart: true).run
     end
 
-    def initialize(method, path, params, multipart: false)
+    def initialize(base_uri, method, path, params, multipart: false)
+      @base_uri = base_uri
       @method = method
       @path = path
       @params = params
@@ -40,7 +41,7 @@ module Kinu
     private
 
     def connection
-      Faraday::Connection.new(Kinu.base_uri) do |builder|
+      Faraday::Connection.new(@base_uri) do |builder|
         builder.request :multipart if @multipart
         builder.request :url_encoded
         builder.adapter :net_http

@@ -24,6 +24,42 @@ module Kinu
       end
     end
 
+    describe '#upload_host' do
+      context 'when no configuration' do
+        it 'returns empty' do
+          expect(config.upload_host).to be_empty
+        end
+      end
+
+      context 'when set host' do
+        let(:hostname) { 'example.com' }
+
+        before do
+          config.host = hostname
+        end
+
+        it 'returns same as Configuration#host' do
+          expect(config.upload_host).to eq(hostname)
+          expect(config.upload_host).to eq(config.host)
+        end
+      end
+
+      context 'when set host and upload_host' do
+        let(:hostname) { 'example.com' }
+        let(:upload_hostname) { 'upload.example.com' }
+
+        before do
+          config.host = hostname
+          config.upload_host = upload_hostname
+        end
+
+        it 'returns upload hostname' do
+          expect(config.upload_host).to eq(upload_hostname)
+          expect(config.upload_host).to_not eq(hostname)
+        end
+      end
+    end
+
     describe '#port' do
       context 'when no configuration' do
         it 'returns 80' do

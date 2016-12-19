@@ -3,14 +3,9 @@ require 'spec_helper'
 module Kinu
   RSpec.describe HttpClient do
     let(:hostname) { 'example.com' }
+    let(:base_uri) { "http://#{hostname}" }
     let(:path) { '/upload' }
-    let(:request_uri) { "http://#{hostname}#{path}" }
-
-    before do
-      Kinu.configure do |config|
-        config.host = hostname
-      end
-    end
+    let(:request_uri) { "#{base_uri}#{path}" }
 
     describe '.post' do
       context 'when the server respond 200' do
@@ -26,7 +21,7 @@ module Kinu
           let(:content_type) { 'application/json' }
 
           it 'returns JSON' do
-            expect(HttpClient.post(path, {})).to eq(JSON.parse(json))
+            expect(HttpClient.post(base_uri, path, {})).to eq(JSON.parse(json))
           end
         end
 
@@ -34,7 +29,7 @@ module Kinu
           let(:content_type) { 'text/plain' }
 
           it 'return String' do
-            expect(HttpClient.post(path, {})).to eq(json)
+            expect(HttpClient.post(base_uri, path, {})).to eq(json)
           end
         end
       end
@@ -45,7 +40,7 @@ module Kinu
         end
 
         it 'raises BadRequestError' do
-          expect{ HttpClient.post(path, {}) }.to raise_error(BadRequestError)
+          expect{ HttpClient.post(base_uri, path, {}) }.to raise_error(BadRequestError)
         end
       end
 
@@ -55,7 +50,7 @@ module Kinu
         end
 
         it 'raises ClientError' do
-          expect{ HttpClient.post(path, {}) }.to raise_error(ClientError)
+          expect{ HttpClient.post(base_uri, path, {}) }.to raise_error(ClientError)
         end
       end
 
@@ -65,7 +60,7 @@ module Kinu
         end
 
         it 'raises ClientError' do
-          expect{ HttpClient.post(path, {}) }.to raise_error(ServerError)
+          expect{ HttpClient.post(base_uri, path, {}) }.to raise_error(ServerError)
         end
       end
     end
@@ -82,7 +77,7 @@ module Kinu
         end
 
         it 'returns JSON' do
-          HttpClient.multipart_post(path, {})
+          HttpClient.multipart_post(base_uri, path, {})
         end
       end
 
@@ -106,7 +101,7 @@ module Kinu
 
         it 'does not raise any errors' do
           expect{
-            HttpClient.multipart_post(path, params)
+            HttpClient.multipart_post(base_uri, path, params)
           }.to_not raise_error
         end
       end
