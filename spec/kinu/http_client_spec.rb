@@ -82,7 +82,7 @@ module Kinu
       end
 
       context 'with a file param' do
-        let(:filepath) { [Pathname.new(__FILE__).parent, 'onigiri_sake.jpg'].join('/') }
+        let(:filepath) { Pathname.new(__FILE__).parent.join('onigiri_sake.jpg') }
         let(:file) { File.new(filepath) }
         let(:params) do
           { name: 'User',
