@@ -6,8 +6,8 @@ module Kinu
 
     describe '#host' do
       context 'when no configuration' do
-        it 'returns empty' do
-          expect(config.host).to be_empty
+        it 'returns nil' do
+          expect(config.host).to be_nil
         end
       end
 
@@ -26,8 +26,8 @@ module Kinu
 
     describe '#upload_host' do
       context 'when no configuration' do
-        it 'returns empty' do
-          expect(config.upload_host).to be_empty
+        it 'returns nil' do
+          expect(config.upload_host).to be_nil
         end
       end
 
@@ -38,9 +38,8 @@ module Kinu
           config.host = hostname
         end
 
-        it 'returns same as Configuration#host' do
-          expect(config.upload_host).to eq(hostname)
-          expect(config.upload_host).to eq(config.host)
+        it 'returns nil' do
+          expect(config.upload_host).to be_nil
         end
       end
 

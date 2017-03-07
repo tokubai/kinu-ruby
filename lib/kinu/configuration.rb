@@ -3,11 +3,11 @@ module Kinu
     attr_writer :host, :upload_host, :port, :ssl
 
     def host
-      @host || ""
+      @host
     end
 
     def upload_host
-      @upload_host || host || ""
+      @upload_host
     end
 
     def port
