@@ -1,6 +1,8 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'kinu'
+require 'webmock/rspec'
+require 'pry'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

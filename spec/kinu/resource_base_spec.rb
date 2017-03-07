@@ -3,11 +3,13 @@ require 'uri'
 
 module Kinu
   RSpec.describe ResourceBase do
-    let(:host) { 'example.com' }
+    let(:hostname) { 'example.com' }
+    let(:upload_hostname) { 'upload.example.com' }
 
     before do
       Kinu.configure do |config|
-        config.host = host
+        config.host = hostname
+        config.upload_host = upload_hostname
         config.ssl = false
         config.port = 80
       end
@@ -38,7 +40,7 @@ module Kinu
       context 'with width' do
         let(:width) { 100 }
         let(:geometry) { { width: width } }
-        let(:uri) { URI::HTTP.build(host: host, path: "/images/#{name}/w=#{width}/#{id}.jpg") }
+        let(:uri) { URI::HTTP.build(host: hostname, path: "/images/#{name}/w=#{width}/#{id}.jpg") }
 
         it 'returns uri' do
           is_expected.to eq(uri)
@@ -48,7 +50,7 @@ module Kinu
       context 'with height' do
         let(:height) { 100 }
         let(:geometry) { { height: height } }
-        let(:uri) { URI::HTTP.build(host: host, path: "/images/#{name}/h=#{height}/#{id}.jpg") }
+        let(:uri) { URI::HTTP.build(host: hostname, path: "/images/#{name}/h=#{height}/#{id}.jpg") }
 
         it 'returns uri' do
           is_expected.to eq(uri)
@@ -57,7 +59,7 @@ module Kinu
 
       context 'with middle' do
         let(:geometry) { { middle: true } }
-        let(:uri) { URI::HTTP.build(host: host, path: "/images/#{name}/m=true/#{id}.jpg") }
+        let(:uri) { URI::HTTP.build(host: hostname, path: "/images/#{name}/m=true/#{id}.jpg") }
 
         it 'returns uri' do
           is_expected.to eq(uri)
@@ -66,7 +68,7 @@ module Kinu
 
       context 'with original' do
         let(:geometry) { { original: true } }
-        let(:uri) { URI::HTTP.build(host: host, path: "/images/#{name}/o=true/#{id}.jpg") }
+        let(:uri) { URI::HTTP.build(host: hostname, path: "/images/#{name}/o=true/#{id}.jpg") }
 
         it 'returns uri' do
           is_expected.to eq(uri)
