@@ -27,11 +27,11 @@ module Kinu
       return if @options[:middle] == true
       return if @options[:original] == true
 
-      raise ArgumentError, <<~EOS
-      invalid geometry, geometry must be met least one condition.
-      - set width or height any numeric.
-      - set middle true.
-      - set original true.
+      raise ArgumentError, <<-EOS
+invalid geometry, geometry must be met least one condition.
+- set width or height any numeric.
+- set middle true.
+- set original true.
       EOS
     end
 
