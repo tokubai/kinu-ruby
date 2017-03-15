@@ -5,8 +5,8 @@ module Kinu
   class ResourceBase
     attr_reader :name, :id
 
-    def initialize(name, id)
-      @name, @id = name, id
+    def initialize(name, id, options = {})
+      @name, @id, @options = name, id, options
     end
 
     def uri(options)
@@ -29,7 +29,10 @@ module Kinu
     end
 
     def build_uri(geometry, format, timestamp)
-      uri = base_uri
+      uri = base_uri.dup
+      if @options[:ssl]
+        uri.scheme = 'https'
+      end
       uri.path  = build_path(geometry, format)
       uri.query = "#{timestamp.to_s}" if timestamp
       uri
