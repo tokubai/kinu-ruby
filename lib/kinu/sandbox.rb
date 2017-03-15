@@ -5,6 +5,7 @@ module Kinu
   class Sandbox < ResourceBase
     def self.upload(file)
       response = Kinu::HttpClient.multipart_post(
+        Kinu.base_upload_uri,
         '/sandbox',
         {
           image: Kinu::HttpClient::UploadFile.new(file),
@@ -15,6 +16,7 @@ module Kinu
 
     def self.attach(name, id, sandbox_id)
       response = Kinu::HttpClient.post(
+        Kinu.base_upload_uri,
         '/sandbox/attach',
         {
           name: name,
