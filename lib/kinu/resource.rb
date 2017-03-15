@@ -18,7 +18,7 @@ module Kinu
     end
 
     def attach_from_sandbox(sandbox_id)
-      Sandbox.attach(Kinu.base_upload_uri, @name, @id, sandbox_id)
+      Sandbox.attach(@name, @id, sandbox_id)
     end
   end
 end
