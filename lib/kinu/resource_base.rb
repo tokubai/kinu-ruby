@@ -33,8 +33,15 @@ module Kinu
       if @options[:ssl]
         uri.scheme = 'https'
       end
+
       uri.path  = build_path(geometry, format)
-      uri.query = "#{timestamp.to_s}" if timestamp
+
+      if !timestamp.nil? && timestamp.respond_to?(:to_i)
+        uri.query = "#{timestamp.to_i}"
+      elsif !timestamp.nil?
+        uri.query = timestamp.to_s
+      end
+
       uri
     end
 
