@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{image server kinu ruby client}
   spec.description   = %q{image server kinu ruby client}
-  spec.homepage      = "https://github.com/TakatoshiMaeda/kinu-ruby"
+  spec.homepage      = "https://github.com/tokubai/kinu-ruby"
 
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = "https://rubygems.org/"
