@@ -70,8 +70,8 @@ module Kinu
         File.basename(@file.path)
       end
 
-      def respond_to?(name)
-        io.respond_to?(name)
+      def respond_to?(name, include_all = false)
+        io.respond_to?(name, include_all)
       end
 
       def method_missing(*args)
