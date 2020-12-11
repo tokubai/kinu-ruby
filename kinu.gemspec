@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "faraday"
 
-  spec.add_development_dependency "bundler", "~> 1.11"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rspec", "~> 3.4"
