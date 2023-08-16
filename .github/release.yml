@@ -1,0 +1,14 @@
+changelog:
+  categories:
+    - title: Added
+      labels:
+        - add
+    - title: Changed
+      labels:
+        - change
+    - title: Removed
+      labels:
+        - remove
+    - title: Others
+      labels:
+        - "*"
