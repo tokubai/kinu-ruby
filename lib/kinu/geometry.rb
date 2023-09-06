@@ -5,14 +5,14 @@ module Kinu
       height:   :h,
       quality:  :q,
       crop:     :c,
-      original: :o,
-      middle:   :m,
       manual_crop: :mc,
       width_offset: :wo,
       height_offset: :ho,
       crop_width: :cw,
       crop_height: :ch,
       assumption_width: :aw,
+      original: :o,
+      middle:   :m,
     }.freeze
 
     def initialize(options)
